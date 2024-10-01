@@ -97,11 +97,11 @@ const Dashboard = () => {
             </ListItemIcon>
             <ListItemText primary="Home" />
           </ListItem>
-          <ListItem button>
+          <ListItem button  onClick={getTransactions} sx={{ cursor: 'pointer' }}>
             <ListItemIcon sx={{ color: '#fff' }}>
               <AccountBalanceWalletIcon />
             </ListItemIcon>
-            <ListItemText primary="Transactions" onClick={getTransactions} />
+            <ListItemText primary="Transactions"  />
           </ListItem>
           <ListItem button>
             <ListItemIcon sx={{ color: '#fff' }}>

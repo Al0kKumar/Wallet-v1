@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom'; // Import Link from react-router-dom
 import axios from 'axios';
 import InputBox from '../components/InputBox';
 import Button from '../components/Button';
@@ -23,7 +23,6 @@ function Login() {
     
     console.log(loginData);
 
-    
     try {
       const response = await axios.post('http://localhost:3000/api/users/login', loginData, {
         headers: {
@@ -31,15 +30,14 @@ function Login() {
         },
       });
 
-      const {token} = response.data;
+      const { token } = response.data;
        
       console.log(token);
       
-      localStorage.setItem('token',token);
+      localStorage.setItem('token', token);
 
       console.log('Login Success:', response.data); // Handle success (e.g., redirect user or show a message)
-      // You could also store a token or user information if received
-      navigate('/dashboard');
+      navigate('/dashboard'); // Redirect to dashboard on success
 
     } catch (error) {
       console.error('Login Error:', error.response ? error.response.data : error.message); // Handle error
@@ -67,6 +65,12 @@ function Login() {
           />
           <Button label="Login" type="submit" /> {/* Change button type to submit */}
         </form>
+        
+        {/* Add a link to sign up page */}
+        <p className='text-white mt-4'>
+          Don't have an account?{' '}
+        </p>
+        <p className='flex justify-center mr-8'><Link to='/signup' className='text-blue-500 underline'>Sign up</Link> {/* Signup link */}</p>
       </div>
     </div>
   );
