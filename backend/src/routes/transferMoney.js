@@ -31,6 +31,12 @@ router.post('/wallettransfer', auth, async (req,res) => {
     const senderaccount = await prisma.account.findUnique({
      where:{userid: senderid}
     })
+
+    const sender = await prisma.user.findUnique({
+        where:{id:req.user.id}
+    })
+
+    const sendername = sender.name;
  
     if(!senderaccount){
      return res.status(404).json({msg:"sender account not found"})
@@ -54,7 +60,12 @@ router.post('/wallettransfer', auth, async (req,res) => {
     if(!receiveraccount){
      return res.status(401).json({msg:"reciver not found"})
     }
+     
+    const receiver = await prisma.user.findUnique({
+        where:{id:resid}
+    })
 
+    const resname = receiver.name;
     
     const transaction = await prisma.$transaction( async (prisma) => {
        
@@ -86,7 +97,8 @@ router.post('/wallettransfer', auth, async (req,res) => {
         data:{
             userid: senderid,
             type: 'WALLET_TO_WALLET',
-            receiverId: resid ,
+            receivername: resname ,
+            sendername: sendername,
             amount: amount
         }
     })
@@ -225,28 +237,39 @@ router.post('/withdraw', auth , async (req,res) => {
 })
 
 
-router.get('/transactionshistory', auth , async (req,res) => {
-
+router.get('/transactionshistory', auth, async (req, res) => {
     const userid = req.user.id;
-
+  
     try {
-        const history = await prisma.history.findMany({
-            where:{userid: userid},
-            orderBy:{
-                createdAt:'desc'
-            }
-        })
-         
-        if(history.length == 0){
-            return res.status(401).json({msg:"error during fetching transactions history"})
-        } 
-        return res.status(201).json(history)
+      const history = await prisma.history.findMany({
+        where: { userid: userid },
+        orderBy: { createdAt: 'desc' },
+        include: { 
+          user: true, 
+        },
+      });
+  
+      if (history.length === 0) {
+        return res.status(401).json({ msg: "error during fetching transactions history" });
+      }
+  
+      const formattedHistory = history.map(transaction => ({
+        id: transaction.id,
+        type: transaction.type,
+        amount: transaction.amount,
+        bank: transaction.bank,
+        sendername: transaction.sendername,
+        receivername: transaction.receivername,
+        createdAt: transaction.createdAt,
+      }));
+  
+      return res.status(201).json(formattedHistory);
     } catch (error) {
-        console.log(error);
-        
+      console.log(error);
+      return res.status(500).json({ msg: "An error occurred while fetching transactions." });
     }
-})
-
+  });
+  
 
 const searchSchema = z.object({
     phoneNumber: z.string().refine((value) => !isNaN(Number(value)) && Number(value) > 0, {
