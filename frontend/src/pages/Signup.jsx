@@ -86,7 +86,10 @@ function Signup() {
               {showPassword ? <FaEyeSlash /> : <FaEye />}
             </div>
           </div>
-
+           
+          <p className='text-white mt-2'>
+          Wait for a minute after signup
+        </p>
           <Button label="Sign Up" type="submit" /> 
         </form>
 

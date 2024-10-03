@@ -74,7 +74,9 @@ function Login() {
               {showPassword ? <FaEyeSlash /> : <FaEye />} {/* Show appropriate icon */}
             </div>
           </div>
-          
+          <p className='text-white mt-2 '>
+          Wait for a minute after login
+         </p>
           <Button label="Login" type="submit" /> {/* Change button type to submit */}
         </form>
         
