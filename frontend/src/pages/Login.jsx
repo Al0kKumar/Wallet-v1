@@ -49,45 +49,39 @@ function Login() {
   };
   return (
     <div className='flex justify-center items-center bg-slate-950 min-h-screen'>
-      <div>
-        <div className='flex justify-center mr-12'>
-        <h1 className='text-white text-4xl ml-12 mb-10'>Login</h1>
-        </div>
-        <form onSubmit={handleSubmit}> 
-          <InputBox
-            label="Email"
-            what="Enter your email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)} 
-          />
-          
-          <div className="relative"> 
-            <InputBox
-              label="Password"
-              what="Enter password"
-              type={showPassword ? "text" : "password"} 
-              value={password}
-              onChange={(e) => setPassword(e.target.value)} 
-            />
-            
-            <div className="absolute inset-y-0 right-0 pr-3 mt-3 flex items-center text-gray-400 cursor-pointer" onClick={togglePasswordVisibility}>
-              {showPassword ? <FaEyeSlash /> : <FaEye />} 
-            </div>
-          </div>
-          <p className='text-white mt-2 '>
-          Wait for a minute after login
-         </p>
-         <div className='flex mr-4 justify-center'>
-          <Button label="Login"  type="submit"  /> 
-          </div>
-        </form>
-        
-        <p className='text-white mt-4 ml-4'>
+        <div>
+      {/* <p className='text-white text-4xl items-center'>login</p> */}
+      <form onSubmit={handleSubmit}>
+      <InputBox
+      label='Email'
+      what='Enter your email'
+      type='text'
+      onChange={(e) => setEmail(e.target.value)}
+      />
+
+      <InputBox
+      label='Password'
+      what='Enter your password'
+      type='password'
+      onChange={(e) => setPassword(e.target.value)}
+      />
+     
+     <p className='text-white mt-4'> wait a minute after login</p>
+
+      <Button 
+      label='login'
+      type ='submit'
+      />
+     </form>
+
+<p className='text-white mt-4 ml-4'>
           Don't have an account?{' '}
         </p>
         <p className='flex justify-center mr-8 ml-3'><Link to='/signup' className='text-blue-500 underline'>Sign up</Link> </p>
-      </div>
+        </div>
+        
     </div>
+    
   );
 }
 
