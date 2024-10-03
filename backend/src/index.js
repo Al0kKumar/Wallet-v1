@@ -5,7 +5,15 @@ const userRoutes = require('./routes/user');
 const accountRoutes = require('./routes/transferMoney');
 
 app.use(express.json());
-app.use(cors());
+const allowedOrigins = ['https://wallet-op.vercel.app'];
+
+app.use(cors({
+    origin: allowedOrigins,
+    methods: ['GET', 'POST', 'OPTIONS'], 
+    credentials: true, 
+}));
+
+app.options('*', cors()); 
 
 app.use('/api/users',userRoutes);
 
