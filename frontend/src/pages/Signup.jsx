@@ -27,7 +27,12 @@ function Signup() {
       });
 
       console.log('Success:', response.data);
-      navigate('/login');
+
+      alert('Signed up successfully! Redirecting to login...');
+
+      setTimeout(() => {
+        navigate('/login');
+      }, 2000); 
 
     } catch (error) {
       const errorResponse = error.response ? error.response.data.msg : 'An error occurred. Please try again.';
