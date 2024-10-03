@@ -20,7 +20,7 @@ const SendMoney = () => {
         try {
             const token = localStorage.getItem('token'); 
 
-            const response = await axios.post('http://localhost:3000/api/accounts/search', 
+            const response = await axios.post('https://wallet-1rzw.onrender.com/api/accounts/search', 
             { phoneNumber },
             {
                 headers: {
@@ -54,7 +54,7 @@ const SendMoney = () => {
             const token = localStorage.getItem('token');
 
             // Here you would send the transfer details (userId and amount) to the backend
-            const response = await axios.post('http://localhost:3000/api/accounts/wallettransfer', 
+            const response = await axios.post('https://wallet-1rzw.onrender.com/api/accounts/wallettransfer', 
             { receiverid, amount },
             {
                 headers: {

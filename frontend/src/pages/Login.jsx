@@ -1,21 +1,20 @@
 import React, { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom'; // Import Link from react-router-dom
+import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
 import InputBox from '../components/InputBox';
 import Button from '../components/Button';
+import { FaEye, FaEyeSlash } from 'react-icons/fa'; 
 
 function Login() {
-  // State variables for storing user input
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  
+  const [showPassword, setShowPassword] = useState(false);
+
   const navigate = useNavigate();
 
-  // Function to handle form submission
   const handleSubmit = async (e) => {
-    e.preventDefault(); // Prevent default form submission behavior
+    e.preventDefault(); 
 
-    // Prepare the data to be sent
     const loginData = {
       email,
       password,
@@ -24,7 +23,7 @@ function Login() {
     console.log(loginData);
 
     try {
-      const response = await axios.post('http://localhost:3000/api/users/login', loginData, {
+      const response = await axios.post('https://wallet-1rzw.onrender.com/api/users/login', loginData, {
         headers: {
           'Content-Type': 'application/json',
         },
@@ -41,8 +40,12 @@ function Login() {
 
     } catch (error) {
       console.error('Login Error:', error.response ? error.response.data : error.message); // Handle error
-      // You could show an error message to the user here
+      
     }
+  };
+
+  const togglePasswordVisibility = () => {
+    setShowPassword((prevState) => !prevState);
   };
 
   return (
@@ -56,13 +59,22 @@ function Login() {
             value={email}
             onChange={(e) => setEmail(e.target.value)} // Update state on change
           />
-          <InputBox
-            label="Password"
-            what="Enter password"
-            type="password" // Ensure password input is masked
-            value={password}
-            onChange={(e) => setPassword(e.target.value)} // Update state on change
-          />
+          
+          <div className="relative"> {/* Relative container for password input and eye icon */}
+            <InputBox
+              label="Password"
+              what="Enter password"
+              type={showPassword ? "text" : "password"} // Toggle input type between text and password
+              value={password}
+              onChange={(e) => setPassword(e.target.value)} // Update state on change
+            />
+            
+            {/* Eye icon for toggling password visibility */}
+            <div className="absolute inset-y-0 right-0 pr-3 mt-3 flex items-center text-gray-400 cursor-pointer" onClick={togglePasswordVisibility}>
+              {showPassword ? <FaEyeSlash /> : <FaEye />} {/* Show appropriate icon */}
+            </div>
+          </div>
+          
           <Button label="Login" type="submit" /> {/* Change button type to submit */}
         </form>
         
