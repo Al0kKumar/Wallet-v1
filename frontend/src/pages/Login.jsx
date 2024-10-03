@@ -35,12 +35,11 @@ function Login() {
       
       localStorage.setItem('token', token);
 
-      console.log('Login Success:', response.data); // Handle success (e.g., redirect user or show a message)
+      console.log('Login Success:', response.data);
       navigate('/dashboard'); // Redirect to dashboard on success
 
     } catch (error) {
-      console.error('Login Error:', error.response ? error.response.data : error.message); // Handle error
-      
+      console.error('Login Error:', error.response ? error.response.data : error.message); 
     }
   };
 
@@ -49,40 +48,37 @@ function Login() {
   };
 
   return (
-    <div className='flex justify-center items-center bg-slate-950 min-h-screen'>
-      <div>
-        <h1 className='text-white text-4xl ml-10 mb-10'>Login</h1>
-        <form onSubmit={handleSubmit}> {/* Wrap inputs in a form */}
+    <div className='flex justify-center items-center bg-slate-950 min-h-screen p-4'>
+      <div className='w-full max-w-sm'>
+        <h1 className='text-white text-4xl mb-6 text-center'>Login</h1>
+        <form onSubmit={handleSubmit} className="space-y-4"> {/* Add spacing between inputs */}
           <InputBox
             label="Email"
             what="Enter your email"
             value={email}
-            onChange={(e) => setEmail(e.target.value)} // Update state on change
+            onChange={(e) => setEmail(e.target.value)}
           />
           
-          <div className="relative"> {/* Relative container for password input and eye icon */}
+          <div className="relative">
             <InputBox
               label="Password"
               what="Enter password"
-              type={showPassword ? "text" : "password"} // Toggle input type between text and password
+              type={showPassword ? "text" : "password"}
               value={password}
-              onChange={(e) => setPassword(e.target.value)} // Update state on change
+              onChange={(e) => setPassword(e.target.value)}
             />
-            
-            {/* Eye icon for toggling password visibility */}
             <div className="absolute inset-y-0 right-0 pr-3 mt-3 flex items-center text-gray-400 cursor-pointer" onClick={togglePasswordVisibility}>
-              {showPassword ? <FaEyeSlash /> : <FaEye />} {/* Show appropriate icon */}
+              {showPassword ? <FaEyeSlash /> : <FaEye />}
             </div>
           </div>
           
-          <Button label="Login" type="submit" /> {/* Change button type to submit */}
+          <Button label="Login" type="submit" />
         </form>
         
-        {/* Add a link to sign up page */}
-        <p className='text-white mt-4'>
+        <p className='text-white mt-4 text-center'>
           Don't have an account?{' '}
+          <Link to='/signup' className='text-blue-500 underline'>Sign up</Link>
         </p>
-        <p className='flex justify-center mr-8'><Link to='/signup' className='text-blue-500 underline'>Sign up</Link> {/* Signup link */}</p>
       </div>
     </div>
   );
