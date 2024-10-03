@@ -47,7 +47,6 @@ function Login() {
   const togglePasswordVisibility = () => {
     setShowPassword((prevState) => !prevState);
   };
-
   return (
     <div className='flex justify-center items-center bg-slate-950 min-h-screen'>
       <div>
@@ -93,4 +92,3 @@ function Login() {
 }
 
 export default Login;
-
