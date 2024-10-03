@@ -5,12 +5,20 @@ const userRoutes = require('./routes/user');
 const accountRoutes = require('./routes/transferMoney');
 
 app.use(express.json());
-const allowedOrigins = ['https://wallet-op.vercel.app'];
+const allowedOrigins = ['https://wallet-op.vercel.app','http://localhost:5173'];
+
 
 app.use(cors({
-    origin: allowedOrigins,
-    methods: ['GET', 'POST', 'OPTIONS'], 
-    credentials: true, 
+    origin: function (origin, callback) {
+       
+        if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+            callback(null, true);
+        } else {
+            callback(new Error('Not allowed by CORS'));
+        }
+    },
+    methods: ['GET', 'POST', 'OPTIONS'],
+    credentials: true,
 }));
 
 app.options('*', cors()); 
