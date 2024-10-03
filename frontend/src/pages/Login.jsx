@@ -6,8 +6,8 @@ import Button from '../components/Button';
 import { FaEye, FaEyeSlash } from 'react-icons/fa'; 
 
 function Login() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('ak@gmail.com');
+  const [password, setPassword] = useState('tiger');
   const [showPassword, setShowPassword] = useState(false);
 
   const navigate = useNavigate();
@@ -51,7 +51,9 @@ function Login() {
   return (
     <div className='flex justify-center items-center bg-slate-950 min-h-screen'>
       <div>
+        <div className='flex justify-center mr-12'>
         <h1 className='text-white text-4xl ml-12 mb-10'>Login</h1>
+        </div>
         <form onSubmit={handleSubmit}> 
           <InputBox
             label="Email"
