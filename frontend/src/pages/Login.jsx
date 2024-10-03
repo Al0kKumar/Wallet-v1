@@ -58,6 +58,7 @@ function Login() {
   label='Email'
   what='Enter your email'
   type='text'
+  value={email}
   onChange={(e) => setEmail(e.target.value)}
   />
 
