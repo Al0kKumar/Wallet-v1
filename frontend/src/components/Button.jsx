@@ -2,11 +2,11 @@ import React from 'react'
 
 function Button({label}) {
   return (
-    <div>
+    <div className='flex justify-center'>
         <button
-        className='text-white 
+        className='text-white text-center
         bg-blue-500 px-12 py-3 ml-5 rounded-md mt-5'
-         >
+        >
           {label}
         </button>
     </div>

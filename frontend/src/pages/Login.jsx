@@ -48,41 +48,48 @@ function Login() {
     setShowPassword((prevState) => !prevState);
   };
   return (
-    <div className='flex justify-center items-center bg-slate-950 min-h-screen'>
-        <div>
-      {/* <p className='text-white text-4xl items-center'>login</p> */}
-      <form onSubmit={handleSubmit}>
-      <InputBox
-      label='Email'
-      what='Enter your email'
-      type='text'
-      onChange={(e) => setEmail(e.target.value)}
-      />
+  <div className='flex justify-center items-center bg-slate-950 min-h-screen'>
+    <div>
+      <div className='flex justify-center'>
+   <p className='text-white text-4xl items-center mb-5'>login</p> 
+   </div>
+  <form onSubmit={handleSubmit}>
+  <InputBox
+  label='Email'
+  what='Enter your email'
+  type='text'
+  onChange={(e) => setEmail(e.target.value)}
+  />
 
-      <InputBox
-      label='Password'
-      what='Enter your password'
-      type='password'
-      onChange={(e) => setPassword(e.target.value)}
-      />
-     
-     <p className='text-white mt-4'> wait a minute after login</p>
+  <InputBox
+  label='Password'
+  what='Enter your password'
+  type='password'
+  onChange={(e) => setPassword(e.target.value)}
+  />
+ <div className='flex justify-center'>
+ <p className='text-white mt-4 text-center'> wait a minute after login</p>
+ </div>
 
-      <Button 
-      label='login'
-      type ='submit'
-      />
-     </form>
+  <Button 
+  label='login'
+  type ='submit'
+  />
+ </form>
 
-<p className='text-white mt-4 ml-4'>
-          Don't have an account?{' '}
-        </p>
-        <p className='flex justify-center mr-8 ml-3'><Link to='/signup' className='text-blue-500 underline'>Sign up</Link> </p>
-        </div>
-        
+<div className='flex justify-center'>
+    <p className='text-white text-center mt-4 ml-4'>
+      Don't have an account?{' '}
+    </p>
+    </div>  
+
+    <div className='flex justify-center'>
+    <p className='text-center mr-8 ml-3'><Link to='/signup' className='text-blue-500 underline'>Sign up</Link> </p>
+    </div>
     </div>
     
-  );
-}
+</div>
 
+);
+}
 export default Login;
