@@ -76,15 +76,15 @@ function Login() {
           <p className='text-white mt-2 '>
           Wait for a minute after login
          </p>
-         
-          <Button label="Login" type="submit" /> 
-          
+         <div className='flex mr-4 justify-center'>
+          <Button label="Login"  type="submit"  /> 
+          </div>
         </form>
         
-        <p className='text-white mt-4'>
+        <p className='text-white mt-4 ml-4'>
           Don't have an account?{' '}
         </p>
-        <p className='flex justify-center mr-8'><Link to='/signup' className='text-blue-500 underline'>Sign up</Link> </p>
+        <p className='flex justify-center mr-8 ml-3'><Link to='/signup' className='text-blue-500 underline'>Sign up</Link> </p>
       </div>
     </div>
   );
