@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import InputBox from '../components/InputBox';
 import Button from '../components/Button';     
-import { useNavigate, Link } from 'react-router-dom'; 
-import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import { useNavigate, Link } from 'react-router-dom';  // Import Link from react-router-dom
+import { FaEye, FaEyeSlash } from 'react-icons/fa'; // Import eye icons
 
 function Signup() {
   const [name, setName] = useState('');
@@ -11,7 +11,7 @@ function Signup() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
-  const [showPassword, setShowPassword] = useState(false);
+  const [showPassword, setShowPassword] = useState(false); // Password visibility toggle
 
   const navigate = useNavigate();
 
@@ -39,9 +39,9 @@ function Signup() {
   const togglePasswordVisibility = () => setShowPassword(!showPassword);
 
   return (
-    <div className='bg-slate-950 flex justify-center items-center h-screen p-4'>
-      <div className='w-full max-w-sm'>
-        <h1 className="text-white text-4xl mb-5 text-center">Sign Up</h1>
+    <div className='bg-slate-950 flex justify-center items-center h-screen'>
+      <div>
+        <h1 className="text-white text-4xl mb-11 ml-7">Sign Up</h1>
          
         {errorMessage && (
           <div className="mb-4 p-2 bg-red-600 text-white rounded">
@@ -49,7 +49,7 @@ function Signup() {
           </div>
         )}
 
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form onSubmit={handleSubmit}>
           <InputBox
             label="Name"
             what="name"
@@ -77,7 +77,7 @@ function Signup() {
               value={password}
               onChange={(e) => setPassword(e.target.value)} 
             />
-            <div className="absolute inset-y-0 right-0 pr-3 mt-3 flex items-center text-gray-400 cursor-pointer" onClick={togglePasswordVisibility}>
+            <div className="absolute inset-y-0 right-0 pr-3 mr-5 mt-3 flex items-center text-gray-400 cursor-pointer" onClick={togglePasswordVisibility}>
               {showPassword ? <FaEyeSlash /> : <FaEye />}
             </div>
           </div>
@@ -85,10 +85,12 @@ function Signup() {
           <Button label="Sign Up" type="submit" /> 
         </form>
 
-        <p className='text-white mt-4 text-center'>
+        {/* Add link to login page if the user is already signed up */}
+        <p className='text-white mt-4'>
           Already have an account?{' '}
-          <Link to="/login" className="text-blue-500 underline">Login</Link>
+          <Link to="/login" className="text-blue-500 underline ">Login</Link>
         </p>
+        
       </div>
     </div>
   );
