@@ -91,9 +91,9 @@ const Dashboard = () => {
     <Box sx={{ display: 'flex', minHeight: '100vh', bgcolor: '#f4f6f8' }}>
       {/* Sidebar */}
       <Drawer
-        variant="temporary" // Change to temporary for mobile
+        variant="temporary" 
         open={drawerOpen}
-        onClose={() => setDrawerOpen(false)} // Close drawer
+        onClose={() => setDrawerOpen(false)} 
         sx={{
           '& .MuiDrawer-paper': {
             width: 240,
@@ -127,7 +127,7 @@ const Dashboard = () => {
         <AppBar position="sticky" sx={{ bgcolor: '#2c3e50', color: '#fff' }}>
           <Toolbar>
             <IconButton edge="start" color="inherit" onClick={() => setDrawerOpen(true)} sx={{ mr: 2 }}>
-              <MenuIcon /> {/* Menu icon to open drawer */}
+              <MenuIcon /> 
             </IconButton>
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
               Wallet Dashboard

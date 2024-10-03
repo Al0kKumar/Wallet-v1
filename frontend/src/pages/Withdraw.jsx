@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Box, Button, Card, Container, Grid, Typography, TextField } from '@mui/material';
-import HDFCLogo from '../assets/Hdfc.jpg'; // Adjust the path as necessary
-import AxisLogo from '../assets/Axis.jpg'; // Adjust the path as necessary
-import IciciLogo from '../assets/Icici.jpg'; // Adjust the path as necessary
-import SbiLogo from '../assets/Sbi.jpg'; // Adjust the path as necessary
+import HDFCLogo from '../assets/Hdfc.jpg'; 
+import AxisLogo from '../assets/Axis.jpg'; 
+import IciciLogo from '../assets/Icici.jpg'; 
+import SbiLogo from '../assets/Sbi.jpg'; 
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 

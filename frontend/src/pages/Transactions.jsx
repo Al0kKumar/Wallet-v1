@@ -13,7 +13,7 @@ import {
   Typography,
   IconButton,
 } from '@mui/material';
-import MenuIcon from '@mui/icons-material/Menu'; // Import Menu icon
+import MenuIcon from '@mui/icons-material/Menu'; 
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
@@ -22,7 +22,7 @@ const Transactions = () => {
   const [transactions, setTransactions] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [drawerOpen, setDrawerOpen] = useState(false); // State for drawer open/close
+  const [drawerOpen, setDrawerOpen] = useState(false); 
 
   useEffect(() => {
     const fetchTransactions = async () => {
@@ -58,12 +58,12 @@ const Transactions = () => {
     <Box sx={{ display: 'flex', minHeight: '100vh', bgcolor: '#f4f6f8' }}>
       {/* Sidebar */}
       <Drawer
-        variant="temporary" // Change to temporary for mobile
+        variant="temporary" 
         open={drawerOpen}
-        onClose={() => setDrawerOpen(false)} // Close drawer
+        onClose={() => setDrawerOpen(false)} 
         sx={{
           '& .MuiDrawer-paper': {
-            width: 240, // Set fixed width for drawer
+            width: 240, 
             boxSizing: 'border-box',
             backgroundColor: '#1c1e21',
             color: '#fff',
@@ -88,7 +88,7 @@ const Transactions = () => {
         <AppBar position="sticky" sx={{ bgcolor: '#2c3e50', color: '#fff' }}>
           <Toolbar>
             <IconButton edge="start" color="inherit" onClick={() => setDrawerOpen(true)} sx={{ mr: 2 }}>
-              <MenuIcon /> {/* Menu icon to open drawer */}
+              <MenuIcon />
             </IconButton>
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
               Transactions
@@ -113,7 +113,7 @@ const Transactions = () => {
                               : `Bank: ${transaction.bank || 'N/A'}` 
                           } | Date: ${new Date(transaction.createdAt).toLocaleDateString()}`}
                           sx={{
-                            wordWrap: 'break-word', // Ensure text wraps properly
+                            wordWrap: 'break-word',
                           }}
                         />
                       </ListItem>

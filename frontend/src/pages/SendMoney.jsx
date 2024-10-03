@@ -38,22 +38,20 @@ const SendMoney = () => {
         } catch (err) {
             console.error('Error searching for user:', err);
             if (err.response && err.response.data && err.response.data.msg) {
-                setError(err.response.data.msg); // Display the error message from the backend
+                setError(err.response.data.msg); 
             } else {
                 setError('An unexpected error occurred. Please try again.');
             }
         }
     };
 
-    // Handle transfer submission
     const handleTransfer = async () => {
-        setError(null); // Clear any previous error
+        setError(null); 
         setSuccess(null);
 
         try {
             const token = localStorage.getItem('token');
 
-            // Here you would send the transfer details (userId and amount) to the backend
             const response = await axios.post('https://wallet-1rzw.onrender.com/api/accounts/wallettransfer', 
             { receiverid, amount },
             {
@@ -63,7 +61,7 @@ const SendMoney = () => {
             });
 
             alert('Transfer successful!');
-            setAmount(''); // Clear the amount field after a successful transfer
+            setAmount(''); 
             navigate('/dashboard');
 
         } catch (err) {
@@ -77,7 +75,6 @@ const SendMoney = () => {
             <Card sx={{ p: 3, boxShadow: 3, borderRadius: 2 }}>
                 <Typography variant="h6" sx={{ mb: 2 }}>Transfer Funds</Typography>
 
-                {/* Phone Number Input */}
                 {!receiverid && (
                     <>
                         <TextField
@@ -124,7 +121,6 @@ const SendMoney = () => {
                     </>
                 )}
 
-                {/* Success Message */}
                 {success && <Alert severity="success">{success}</Alert>}
             </Card>
         </Container>

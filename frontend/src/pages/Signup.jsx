@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import InputBox from '../components/InputBox';
 import Button from '../components/Button';     
-import { useNavigate, Link } from 'react-router-dom';  // Import Link from react-router-dom
-import { FaEye, FaEyeSlash } from 'react-icons/fa'; // Import eye icons
+import { useNavigate, Link } from 'react-router-dom';  
+import { FaEye, FaEyeSlash } from 'react-icons/fa'; 
 
 function Signup() {
   const [name, setName] = useState('');
@@ -93,7 +93,6 @@ function Signup() {
           <Button label="Sign Up" type="submit" /> 
         </form>
 
-        {/* Add link to login page if the user is already signed up */}
         <p className='text-white mt-4'>
           Already have an account?{' '}
           <Link to="/login" className="text-blue-500 underline ">Login</Link>
