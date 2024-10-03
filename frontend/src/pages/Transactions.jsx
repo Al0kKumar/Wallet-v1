@@ -45,10 +45,10 @@ const Transactions = () => {
       <Drawer
         variant="permanent"
         sx={{
-          width: 260,
+          width: { xs: '100%', sm: 260 },
           flexShrink: 0,
           '& .MuiDrawer-paper': {
-            width: 260,
+            width: { xs: '100%', sm: 260 },
             boxSizing: 'border-box',
             backgroundColor: '#1c1e21',
             color: '#fff',
@@ -69,7 +69,7 @@ const Transactions = () => {
       </Drawer>
 
       {/* Main Content */}
-      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+      <Box component="main" sx={{ flexGrow: 1, p: 2 }}>
         <AppBar position="sticky" sx={{ bgcolor: '#2c3e50', color: '#fff' }}>
           <Toolbar>
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
@@ -78,8 +78,8 @@ const Transactions = () => {
           </Toolbar>
         </AppBar>
 
-        <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
-          <Grid container spacing={4}>
+        <Container maxWidth="lg" sx={{ mt: 2, mb: 4 }}>
+          <Grid container spacing={2}>
             <Grid item xs={12}>
               <Card sx={{ p: 3, boxShadow: 3 }}>
                 <Typography variant="h5" sx={{ mb: 2 }}>Transaction History</Typography>
@@ -89,13 +89,14 @@ const Transactions = () => {
                       <ListItem key={transaction.id}>
                         <ListItemText
                           primary={`${transaction.type === 'WALLET_TO_WALLET' ? 'Wallet Transfer' : transaction.type === 'BANK_TO_WALLET' ? 'Bank to Wallet' : 'Wallet to Bank'}`}
-                          secondary={`
-                            Amount: ₹${transaction.amount} |
-                            ${
-                              transaction.type === 'WALLET_TO_WALLET'
-                                ? `Sender: ${transaction.sendername || 'N/A'} | Receiver: ${transaction.receivername || 'N/A'}`
-                                : `Bank: ${transaction.bank || 'N/A'}`
-                            } | Date: ${new Date(transaction.createdAt).toLocaleDateString()}`}
+                          secondary={`Amount: ₹${transaction.amount} | ${
+                            transaction.type === 'WALLET_TO_WALLET'
+                              ? `Sender: ${transaction.sendername || 'N/A'} | Receiver: ${transaction.receivername || 'N/A'}`
+                              : `Bank: ${transaction.bank || 'N/A'}` 
+                          } | Date: ${new Date(transaction.createdAt).toLocaleDateString()}`}
+                          sx={{
+                            wordWrap: 'break-word', // Ensure text wraps properly
+                          }}
                         />
                       </ListItem>
                     ))

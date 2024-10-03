@@ -22,7 +22,7 @@ const Dashboard = () => {
   };
 
   const handleAddFundsClick = () => {
-    navigate('/add-funds'); // Navigate to the Add Funds page
+    navigate('/add-funds');
   };
 
   const handleWithdrawClick = () => {
@@ -34,30 +34,28 @@ const Dashboard = () => {
   };
 
   const [balance, setBalance] = useState(0);
-  const [userName, setUserName] = useState(''); // State to store user name
-  const [loading, setLoading] = useState(true); // Loading state
+  const [userName, setUserName] = useState('');
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
       const token = localStorage.getItem('token');
 
-      // Fetch wallet balance and user details
       try {
         const balanceResponse = await axios.get('https://wallet-1rzw.onrender.com/api/users/userdetails', {
           headers: {
-            Authorization: `Bearer ${token}`, // Include the JWT in the request
+            Authorization: `Bearer ${token}`,
           },
         });
 
         setBalance(balanceResponse.data.balance);
-        setUserName(balanceResponse.data.name); // Assuming your API returns the user's name
-
+        setUserName(balanceResponse.data.name);
       } catch (error) {
         console.error("Error fetching data:", error);
         setError("Failed to load data. Please try again later.");
       } finally {
-        setLoading(false); // Set loading to false after requests complete
+        setLoading(false);
       }
     };
 
@@ -65,23 +63,22 @@ const Dashboard = () => {
   }, []);
 
   if (loading) {
-    return <Typography variant="h6">Loading...</Typography>; // Loading indicator
+    return <Typography variant="h6">Loading...</Typography>;
   }
 
   if (error) {
-    return <Typography variant="h6" color="error">{error}</Typography>; // Error message
+    return <Typography variant="h6" color="error">{error}</Typography>;
   }
 
   return (
     <Box sx={{ display: 'flex', minHeight: '100vh', bgcolor: '#f4f6f8' }}>
-      {/* Sidebar */}
       <Drawer
         variant="permanent"
         sx={{
-          width: 260,
+          width: { xs: '100%', sm: 260 },
           flexShrink: 0,
           '& .MuiDrawer-paper': {
-            width: 260,
+            width: { xs: '100%', sm: 260 },
             boxSizing: 'border-box',
             backgroundColor: '#1c1e21',
             color: '#fff',
@@ -91,8 +88,7 @@ const Dashboard = () => {
         <Toolbar />
         <Box sx={{ overflow: 'auto' }}>
           <List>
-            {/* Sidebar items with icons */}
-            <ListItem button onClick={getTransactions} sx={{ cursor: 'pointer' }} >
+            <ListItem button onClick={getTransactions} sx={{ cursor: 'pointer' }}>
               <ListItemIcon sx={{ color: '#fff' }}>
                 <AccountBalanceWalletIcon />
               </ListItemIcon>
@@ -108,9 +104,7 @@ const Dashboard = () => {
         </Box>
       </Drawer>
 
-      {/* Main Content */}
-      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-        {/* Sticky AppBar */}
+      <Box component="main" sx={{ flexGrow: 1, p: 2 }}>
         <AppBar position="sticky" sx={{ bgcolor: '#2c3e50', color: '#fff' }}>
           <Toolbar>
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
@@ -119,13 +113,12 @@ const Dashboard = () => {
           </Toolbar>
         </AppBar>
 
-        <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
-          <Grid container spacing={4}>
-            {/* Account Balance Card */}
+        <Container maxWidth="lg" sx={{ mt: 2, mb: 4 }}>
+          <Grid container spacing={2}>
             <Grid item xs={12} md={4} lg={3}>
               <Card
                 sx={{
-                  p: 3,
+                  p: 2,
                   display: 'flex',
                   flexDirection: 'column',
                   justifyContent: 'center',
@@ -135,10 +128,10 @@ const Dashboard = () => {
                   borderRadius: 2,
                 }}
               >
-                <Typography variant="h6" color="textSecondary">
-                  Welcome, {userName}! {/* Display user name */}
+                <Typography variant="h6" color="textSecondary" align="center">
+                  Welcome, {userName}!
                 </Typography>
-                <Typography variant="h6" color="textSecondary">
+                <Typography variant="body1" color="textSecondary" align="center">
                   Account Balance
                 </Typography>
                 <Typography variant="h4" color="primary" sx={{ mt: 1 }}>
@@ -147,22 +140,22 @@ const Dashboard = () => {
               </Card>
             </Grid>
 
-            {/* Quick Actions */}
             <Grid item xs={12}>
               <Card
                 sx={{
-                  p: 3,
+                  p: 2,
                   display: 'flex',
+                  flexDirection: { xs: 'column', md: 'row' },
                   justifyContent: 'space-around',
                   bgcolor: '#e0f7fa',
                   boxShadow: 3,
                   borderRadius: 2,
                 }}
               >
-                <Button variant="contained" color="primary" startIcon={<AddIcon />} onClick={handleAddFundsClick}>
+                <Button variant="contained" color="primary" startIcon={<AddIcon />} onClick={handleAddFundsClick} sx={{ mb: { xs: 1, md: 0 } }}>
                   Add Funds
                 </Button>
-                <Button variant="contained" color="secondary" startIcon={<RemoveIcon />} onClick={handleWithdrawClick}>
+                <Button variant="contained" color="secondary" startIcon={<RemoveIcon />} onClick={handleWithdrawClick} sx={{ mb: { xs: 1, md: 0 } }}>
                   Withdraw
                 </Button>
                 <Button variant="contained" startIcon={<TransferWithinAStationIcon />} onClick={handleTransferClick}>
