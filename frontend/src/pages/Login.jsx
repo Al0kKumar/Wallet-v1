@@ -61,12 +61,27 @@ function Login() {
   onChange={(e) => setEmail(e.target.value)}
   />
 
-  <InputBox
+  {/* <InputBox
   label='Password'
   what='Enter your password'
   type='password'
   onChange={(e) => setPassword(e.target.value)}
-  />
+  /> */}
+
+         <div className="relative">
+            <InputBox
+              label="Password"
+              what="password"
+              type={showPassword ? "text" : "password"} 
+              value={password}
+              onChange={(e) => setPassword(e.target.value)} 
+            />
+            <div className="absolute inset-y-0 right-0 pr-3 mr-1 mt-4 flex items-center text-gray-400 cursor-pointer" onClick={togglePasswordVisibility}>
+              {showPassword ? <FaEyeSlash /> : <FaEye />}
+            </div>
+          </div>
+
+
  <div className='flex justify-center'>
  <p className='text-white mt-4 text-center'> wait a minute after login</p>
  </div>

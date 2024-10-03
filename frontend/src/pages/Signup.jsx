@@ -46,8 +46,9 @@ function Signup() {
   return (
     <div className='bg-slate-950 flex justify-center items-center h-screen'>
       <div>
-        <h1 className="text-white text-4xl mb-11 ml-9">Sign Up</h1>
-         
+        
+        <h1 className="text-white  text-4xl mb-11 ml-9">Sign Up</h1>
+        
         {errorMessage && (
           <div className="mb-4 p-2 bg-red-600 text-white rounded">
             {errorMessage}
