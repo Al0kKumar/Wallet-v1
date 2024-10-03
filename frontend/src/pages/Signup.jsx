@@ -27,7 +27,7 @@ function Signup() {
       });
 
       console.log('Success:', response.data);
-      navigate('/dashboard');
+      navigate('/login');
 
     } catch (error) {
       const errorResponse = error.response ? error.response.data.msg : 'An error occurred. Please try again.';
