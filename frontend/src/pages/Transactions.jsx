@@ -1,5 +1,19 @@
 import React, { useEffect, useState } from 'react';
-import { AppBar, Box, Card, Container, Drawer, Grid, List, ListItem, ListItemText, Toolbar, Typography } from '@mui/material';
+import {
+  AppBar,
+  Box,
+  Card,
+  Container,
+  Drawer,
+  Grid,
+  List,
+  ListItem,
+  ListItemText,
+  Toolbar,
+  Typography,
+  IconButton,
+} from '@mui/material';
+import MenuIcon from '@mui/icons-material/Menu'; // Import Menu icon
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
@@ -8,6 +22,7 @@ const Transactions = () => {
   const [transactions, setTransactions] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [drawerOpen, setDrawerOpen] = useState(false); // State for drawer open/close
 
   useEffect(() => {
     const fetchTransactions = async () => {
@@ -43,12 +58,12 @@ const Transactions = () => {
     <Box sx={{ display: 'flex', minHeight: '100vh', bgcolor: '#f4f6f8' }}>
       {/* Sidebar */}
       <Drawer
-        variant="permanent"
+        variant="temporary" // Change to temporary for mobile
+        open={drawerOpen}
+        onClose={() => setDrawerOpen(false)} // Close drawer
         sx={{
-          width: { xs: '100%', sm: 260 },
-          flexShrink: 0,
           '& .MuiDrawer-paper': {
-            width: { xs: '100%', sm: 260 },
+            width: 240, // Set fixed width for drawer
             boxSizing: 'border-box',
             backgroundColor: '#1c1e21',
             color: '#fff',
@@ -72,6 +87,9 @@ const Transactions = () => {
       <Box component="main" sx={{ flexGrow: 1, p: 2 }}>
         <AppBar position="sticky" sx={{ bgcolor: '#2c3e50', color: '#fff' }}>
           <Toolbar>
+            <IconButton edge="start" color="inherit" onClick={() => setDrawerOpen(true)} sx={{ mr: 2 }}>
+              <MenuIcon /> {/* Menu icon to open drawer */}
+            </IconButton>
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
               Transactions
             </Typography>
@@ -114,3 +132,4 @@ const Transactions = () => {
 };
 
 export default Transactions;
+

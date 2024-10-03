@@ -1,5 +1,20 @@
 import React, { useEffect, useState } from 'react';
-import { AppBar, Box, Button, Card, Container, Drawer, Grid, List, ListItem, ListItemIcon, ListItemText, Toolbar, Typography, IconButton } from '@mui/material';
+import {
+  AppBar,
+  Box,
+  Button,
+  Card,
+  Container,
+  Drawer,
+  Grid,
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+  Toolbar,
+  Typography,
+  IconButton,
+} from '@mui/material';
 import HomeIcon from '@mui/icons-material/Home';
 import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
 import SettingsIcon from '@mui/icons-material/Settings';
@@ -9,6 +24,7 @@ import RemoveIcon from '@mui/icons-material/Remove';
 import TransferWithinAStationIcon from '@mui/icons-material/TransferWithinAStation';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import MenuIcon from '@mui/icons-material/Menu'; // Import Menu icon
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -37,6 +53,7 @@ const Dashboard = () => {
   const [userName, setUserName] = useState('');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [drawerOpen, setDrawerOpen] = useState(false); // State for drawer open/close
 
   useEffect(() => {
     const fetchData = async () => {
@@ -72,13 +89,14 @@ const Dashboard = () => {
 
   return (
     <Box sx={{ display: 'flex', minHeight: '100vh', bgcolor: '#f4f6f8' }}>
+      {/* Sidebar */}
       <Drawer
-        variant="permanent"
+        variant="temporary" // Change to temporary for mobile
+        open={drawerOpen}
+        onClose={() => setDrawerOpen(false)} // Close drawer
         sx={{
-          width: { xs: '100%', sm: 260 },
-          flexShrink: 0,
           '& .MuiDrawer-paper': {
-            width: { xs: '100%', sm: 260 },
+            width: 240,
             boxSizing: 'border-box',
             backgroundColor: '#1c1e21',
             color: '#fff',
@@ -104,9 +122,13 @@ const Dashboard = () => {
         </Box>
       </Drawer>
 
+      {/* Main Content */}
       <Box component="main" sx={{ flexGrow: 1, p: 2 }}>
         <AppBar position="sticky" sx={{ bgcolor: '#2c3e50', color: '#fff' }}>
           <Toolbar>
+            <IconButton edge="start" color="inherit" onClick={() => setDrawerOpen(true)} sx={{ mr: 2 }}>
+              <MenuIcon /> {/* Menu icon to open drawer */}
+            </IconButton>
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
               Wallet Dashboard
             </Typography>
