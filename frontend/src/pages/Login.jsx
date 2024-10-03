@@ -51,7 +51,7 @@ function Login() {
   return (
     <div className='flex justify-center items-center bg-slate-950 min-h-screen'>
       <div>
-        <h1 className='text-white text-4xl ml-10 mb-10'>Login</h1>
+        <h1 className='text-white text-4xl ml-12 mb-10'>Login</h1>
         <form onSubmit={handleSubmit}> 
           <InputBox
             label="Email"
