@@ -91,7 +91,7 @@ function Signup() {
           <p className='text-white mt-2'>
           Wait for a minute after signup
         </p>
-        <div className='flex justify-center mr-12'>
+        <div className='flex'>
           <Button label="Sign Up" type="submit" /> 
           </div>
         </form>

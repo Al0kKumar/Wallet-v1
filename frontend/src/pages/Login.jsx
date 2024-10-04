@@ -51,7 +51,7 @@ function Login() {
   <div className='flex justify-center items-center bg-slate-950 min-h-screen'>
     <div>
       <div className='flex justify-center'>
-   <p className='text-white text-4xl items-center mb-5'>login</p> 
+   <p className='text-white text-4xl items-center mb-5'>Login</p> 
    </div>
   <form onSubmit={handleSubmit}>
   <InputBox
@@ -87,10 +87,12 @@ function Login() {
  <p className='text-white mt-4 text-center'> wait a minute after login</p>
  </div>
 
+<div className='flex ml-3'>
   <Button 
   label='login'
   type ='submit'
   />
+  </div>
  </form>
 
 <div className='flex justify-center'>
