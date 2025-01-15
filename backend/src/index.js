@@ -3,6 +3,9 @@ const app = express();
 const cors = require('cors');
 const userRoutes = require('./routes/user');
 const accountRoutes = require('./routes/transferMoney');
+import connectDB from './db';
+
+connectDB();
 
 app.use(express.json());
 const allowedOrigins = ['https://wallet-op.vercel.app','http://localhost:5173'];
