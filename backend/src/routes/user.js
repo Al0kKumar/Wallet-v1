@@ -1,10 +1,11 @@
 const { z } = require('zod');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const User = require('../models/User');
-const Account = require('../models/Account');
+const User = require('../../models/user');
+const Account = require('../../models/account');
 const express = require('express');
 const router = express.Router();
+const auth = require('../middleware')
 
 const signupSchema = z.object({
     name: z.string().min(1),
@@ -14,50 +15,70 @@ const signupSchema = z.object({
 });
 
 router.post('/signup', async (req, res) => {
-    const check = signupSchema.safeParse(req.body);
+    const validation = signupSchema.safeParse(req.body);
 
-    if (!check.success) {
-        return res.status(401).json({
-            msg: "Please provide valid email/Phone number"
+    if (!validation.success) {
+        return res.status(400).json({
+            msg: "Please provide valid email/phone number",
         });
     }
 
-    const { name, password, phoneNumber, email } = check.data;
-    const hashedPassword = await bcrypt.hash(password, 10);
+    const { name, password, phoneNumber, email } = validation.data;
 
     try {
-        // Create user in MongoDB
+        // Check for existing user with the same email or phone number
+        const existingUser = await User.findOne({ $or: [{ email }, { phoneNumber }] });
+        if (existingUser) {
+            return res.status(400).json({
+                msg: "Email or phone number already exists",
+            });
+        }
+
+        // Hash the password
+        const hashedPassword = await bcrypt.hash(password, 10);
+
+        // Create new user
         const user = new User({
             name,
             phoneNumber,
             password: hashedPassword,
-            email
+            email,
         });
 
         await user.save();
 
         // Create account for the user
         const account = new Account({
-            user: user._id, // Store reference to user
-            balance: 0
+            user: user._id,
+            balance: 0,
         });
 
         await account.save();
 
-        // Set the account reference in the user
+        // Set the account reference in the user document
         user.account = account._id;
         await user.save();
 
         return res.status(201).json({
-            msg: "User created successfully"
+            msg: "User created successfully",
         });
     } catch (error) {
-        console.log("Error creating user", error);
+        console.error("Error creating user:", error);
+
+        // Handle MongoDB duplicate key error
+        if (error.code === 11000) {
+            const duplicateKey = Object.keys(error.keyPattern)[0];
+            return res.status(400).json({
+                msg: `${duplicateKey} already exists`,
+            });
+        }
+
         return res.status(500).json({
-            msg: "Something went wrong on our side"
+            msg: "Something went wrong on our side",
         });
     }
 });
+
 
 const loginSchema = z.object({
     email: z.string().email(),

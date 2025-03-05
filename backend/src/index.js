@@ -3,7 +3,10 @@ const app = express();
 const cors = require('cors');
 const userRoutes = require('./routes/user');
 const accountRoutes = require('./routes/transferMoney');
-import connectDB from './db';
+const  connectDB = require('./db');
+
+require('dotenv').config();
+
 
 connectDB();
 

@@ -1,21 +1,15 @@
 const mongoose = require('mongoose');
-require('dotenv').config();  // Load environment variables from .env file
+require('dotenv').config();
 
 const connectDB = async () => {
     try {
-        // MongoDB URI from environment variables
-        const dbURI = process.env.MONGODB_URI;
+        const uri = process.env.DATABASE_URL;
+        if (!uri) throw new Error('DATABASE_URL is not defined in the environment variables');
 
-        // Connect to MongoDB
-        await mongoose.connect(dbURI, {
-            useNewUrlParser: true,
-            useUnifiedTopology: true,
-        });
-
-        console.log('MongoDB connected successfully');
+        await mongoose.connect(uri); // No need for deprecated options
+        console.log('MongoDB connected');
     } catch (err) {
         console.error('Error connecting to MongoDB:', err);
-        process.exit(1);  // Exit the process if connection fails
     }
 };
 

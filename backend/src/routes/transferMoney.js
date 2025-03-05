@@ -1,8 +1,8 @@
 const { z } = require('zod');
 const auth = require('../middleware');
-const User = require('../models/User');
-const Account = require('../models/Account');
-const History = require('../models/History');
+const User = require('../../models/user');
+const Account = require('../../models/account');
+const History = require('../../models/history');
 const express = require('express');
 const router = express.Router();
 
