@@ -10,7 +10,7 @@ const historySchema = new Schema({
     required: true
   },
   amount: { type: String, required: true },
-  user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },  // Reference to User
+  user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
   createdAt: { type: Date, default: Date.now },
   sendername: { type: String },
   receivername: { type: String },
