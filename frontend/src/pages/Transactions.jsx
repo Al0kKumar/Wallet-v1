@@ -29,7 +29,7 @@ const Transactions = () => {
       const token = localStorage.getItem('token');
 
       try {
-        const response = await axios.get('http://localhost:3000/api/accounts/transactionshistory', {
+        const response = await axios.get('https://wallet-v1-27cg.onrender.com/api/accounts/transactionshistory', {
           headers: {
             Authorization: `Bearer ${token}`,
           },

@@ -20,7 +20,7 @@ const SendMoney = () => {
         try {
             const token = localStorage.getItem('token'); 
 
-            const response = await axios.post('http://localhost:3000/api/accounts/search', 
+            const response = await axios.post('https://wallet-v1-27cg.onrender.com/api/accounts/search', 
             { phoneNumber },
             {
                 headers: {
@@ -52,7 +52,7 @@ const SendMoney = () => {
         try {
             const token = localStorage.getItem('token');
 
-            const response = await axios.post('http://localhost:3000/api/accounts/wallettransfer', 
+            const response = await axios.post('https://wallet-v1-27cg.onrender.com/api/accounts/wallettransfer', 
             { receiverid: String(receiverid), amount: Number(amount) },
             {
                 headers: {

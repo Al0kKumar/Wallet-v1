@@ -30,7 +30,7 @@ const AddFunds = () => {
     const token = localStorage.getItem('token');
     try {
       const response = await axios.post(
-         'http://localhost:3000/api/accounts/deposit',
+         'https://wallet-v1-27cg.onrender.com/api/accounts/deposit',
         {
           bank: selectedBank.name,
           accountNumber,
