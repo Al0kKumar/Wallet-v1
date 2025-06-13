@@ -4,11 +4,12 @@ const User = require('../../models/user');
 const Account = require('../../models/account');
 const History = require('../../models/history');
 const express = require('express');
+const mongoose = require('mongoose');
 const router = express.Router();
 
 const wallettransferSchema = z.object({
-    amount: z.string(),
-    receiverid: z.number()
+    amount: z.number(),
+    receiverid: z.string()
 });
 
 router.post('/wallettransfer', auth, async (req, res) => {

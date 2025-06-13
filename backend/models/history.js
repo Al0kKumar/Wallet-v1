@@ -9,7 +9,7 @@ const historySchema = new Schema({
     enum: ['WALLET_TO_WALLET', 'BANK_TO_WALLET', 'WALLET_TO_BANK'],
     required: true
   },
-  amount: { type: String, required: true },
+  amount: { type: Number, required: true },
   user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
   createdAt: { type: Date, default: Date.now },
   sendername: { type: String },
