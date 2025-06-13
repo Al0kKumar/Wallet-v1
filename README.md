@@ -5,7 +5,7 @@
 
 🚀 Description
 
-This is a Paytm/Phonepe like wallet web-app where user can create its wallet , built with React for the frontend, Nodejs and express for backend,PostgreSQL as Database and Primsa as ORM. The system allows users to view, add, remove, and transfer money between accounts, as well as view transaction history. It uses JWT-based authentication to securely manage user sessions.
+This is a Paytm/Phonepe like wallet web-app where user can create its wallet , built with React for the frontend, Nodejs and express for backend,MongoDB as Database and Mongoose as ORM. The system allows users to view, add, remove, and transfer money between accounts, as well as view transaction history. It uses JWT-based authentication to securely manage user sessions.
 
 ✨ Features
 
@@ -24,8 +24,8 @@ Material UI
 Backend:
 Node.js,
 Express.js,
-Prisma ORM,
-PostgreSQL
+MongoDb,
+MOngoose
 
 Other Tools:
 Axios for API requests
