@@ -29,7 +29,7 @@ const Withdraw = () => {
     const token = localStorage.getItem('token');
     try {
       const response = await axios.post(
-         'https://wallet-1rzw.onrender.com/api/accounts/withdraw',
+         'http://localhost:3000/api/accounts/withdraw',
         {
           bank: selectedBank.name,
           accountNumber,

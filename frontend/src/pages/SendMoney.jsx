@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom'
 const SendMoney = () => {
     const [phoneNumber, setPhoneNumber] = useState('');
     const [receiverid, setReceiverid] = useState('');
-    const [amount, setAmount] = useState('');
+    const [amount, setAmount] = useState();
     const [error, setError] = useState(null);
     const [success, setSuccess] = useState(null);
     const [name,setName] = useState('');
@@ -20,7 +20,7 @@ const SendMoney = () => {
         try {
             const token = localStorage.getItem('token'); 
 
-            const response = await axios.post('https://wallet-1rzw.onrender.com/api/accounts/search', 
+            const response = await axios.post('http://localhost:3000/api/accounts/search', 
             { phoneNumber },
             {
                 headers: {
@@ -52,8 +52,8 @@ const SendMoney = () => {
         try {
             const token = localStorage.getItem('token');
 
-            const response = await axios.post('https://wallet-1rzw.onrender.com/api/accounts/wallettransfer', 
-            { receiverid, amount },
+            const response = await axios.post('http://localhost:3000/api/accounts/wallettransfer', 
+            { receiverid: String(receiverid), amount: Number(amount) },
             {
                 headers: {
                     Authorization: `Bearer ${token}`,

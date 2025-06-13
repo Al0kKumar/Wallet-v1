@@ -60,7 +60,7 @@ const Dashboard = () => {
       const token = localStorage.getItem('token');
 
       try {
-        const balanceResponse = await axios.get('https://wallet-1rzw.onrender.com/api/users/userdetails', {
+        const balanceResponse = await axios.get('http://localhost:3000/api/users/userdetails', {
           headers: {
             Authorization: `Bearer ${token}`,
           },
